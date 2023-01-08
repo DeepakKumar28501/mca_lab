@@ -647,8 +647,10 @@ select first_name,round((current_date-hire_date)/7) as "week works" from employe
 //q10
 select first_name,initcap(last_name) as "last_name",length(first_name||' '||last_name) as "name lenth" from employees where first_name like 'J%' or first_name like 'A' or first_name like 'M%' order by last_name asc;
 
-________________________________________________________________________________________________________________________a
-
+________________________________________________________________________________________________________________________
+                                assignment 5
+ 
+select first_name,salary,commission_pct,nvl2(commision)
 
 
 
