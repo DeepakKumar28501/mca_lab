@@ -567,6 +567,24 @@ references product_masters(product_no) on delete set Null
 //05/01/2023
 
 ______________________________________________________________________________________________________________________________
+                                ***************8 CROSS JOIN***********************
+                                select * from locations cross join countries
+                                *************** EquiJOIN*************************
+                                select * from employees,departments where employees.department_id=departments.department_id
+select employees.employee_id,employees.first_name, departments.department_id,departments.department_name from employees,departments where employees.department_id=departments.department_id
+select employee_id,first_name, departments.department_id,department_name from employees,departments where employees.department_id=departments.department_id
+select employee_id,first_name, departments.department_id,department_name from employees join departments on employees.department_id=departments.department_id
+*************** OUTER JOIN*************************
+                                
+*************** INNER JOIN*************************
+                                
+*************** NATURAL JOIN*************************    
+select * from   employees NATURAL JOIN departments          
+*************** EquiJOIN*************************
+                                
+*************** EquiJOIN************************* 
+                                
+*************** EquiJOIN*************************                                
 select  employees.first_name , departments.department_name from departments,employees
 select  employees.employee_id , departments.department_id from departments,employees
 select * from departments,employees
@@ -574,9 +592,7 @@ select * from departments,employees
 select * from   employees NATURAL JOIN departments
 
 //retrieving record with equijoin
-select employees.employee_id,employees.first_name, departments.department_id,departments.department_name from employees,departments where employees.department_id=departments.department_id
-select employee_id,first_name, departments.department_id,department_name from employees,departments where employees.department_id=departments.department_id
-select employee_id,first_name, departments.department_id,department_name from employees join departments on employees.department_id=departments.department_id
+
 
 //Addition Search Condition Using AND Operator
 
@@ -651,6 +667,30 @@ ________________________________________________________________________________
                                 assignment 5
  
 select first_name,salary,commission_pct,nvl2(commision)
+                                assignment 10
+                                select * from locations cross join countries
+select * from employees
+select * from departments
+select * from locations
+select * from employees,departments where employees.department_id=departments.department_id
+select * from   employees NATURAL JOIN departments
+
+select E.employee_id,E.first_name||' '||E.Last_name,E.job_id,E.salary,E.department_id,d.department_name from employees E,departments D where E.department_id=D.department_id
+
+select E.employee_id,E.first_name||' '||E.Last_name,E.job_id,E.hire_date,D.department_name from employees E,departments D
+where D.department_name like 'Administration' OR D.department_name like 'IT' 
+
+Write a query to display employee id, employee name, department name, designation, joining date, salary who are received salary more than 10000.
+
+select E.employee_id,E.first_name||' '||E.Last_name,D.department_name,E.job_id,E.hire_date,E.salary from employees E,departments D
+where E.salary>10000
+
+ Write a query to display employee id, employee name, department name, designation, city they belongs to for depatments like marketing and purchase.
+
+select E.employee_id,E.first_name||' '||E.Last_name,D.department_name,E.job_id,L.city from employees E,departments D,Locations L
+where E.department_id=D.department_id and D.department_name like 'Marketing%' AND D.department_name like 'Purchasing%'
+
+                                
 
 
 
