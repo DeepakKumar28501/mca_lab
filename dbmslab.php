@@ -691,6 +691,106 @@ select E.employee_id,E.first_name||' '||E.Last_name,D.department_name,E.job_id,L
 where E.department_id=D.department_id and D.department_name like 'Marketing%' AND D.department_name like 'Purchasing%'
 
                                 
+___________________________________________________________________________________________________________________________________
+   **************************************** ASSIGNMENT 11********************************************* 
+ 
+ create table sale_details(
+sale_id number(5) primary key,
+sale_date date  NOT NULL,
+product_id varchar2(8) UNIQUE,
+product_name varchar(30) UNIQUE,
+cost_price number(8,2),
+sale_price number(8,2),
+no_of_unite_sale number(8),
+total_sale_amt number(8,2)
+)
 
+
+insert all
+into sale_details values(10,'07-JAN-2022','P101','Candy',20.5,37.5,21,610)
+into sale_details values(11,'07-JAN-2022','P102','Dry fruit',21.5,38.5,20,610)
+into sale_details values(12,'07-JAN-2022','P103','Toffee',22.5,34.5,29,610)
+into sale_details values(13,'07-JAN-2022','P104','Butter',24.5,32.5,25,610)
+into sale_details values(14,'07-JAN-2022','P105','TEA',26.5,39.5,26,610)
+select * from dual
+
+insert all
+into sale_details values(15,'08-JAN-2022','P106','Sandy',20.5,37.5,21,6550)
+into sale_details values(16,'08-JAN-2022','P107','Drys fruit',21.5,38.5,20,6410)
+into sale_details values(17,'08-JAN-2022','P108','Toffeen',22.5,34.5,29,6610)
+into sale_details values(18,'08-JAN-2022','P109','Butters',24.5,32.5,25,6010)
+into sale_details values(19,'08-JAN-2022','P110','Pickle',26.5,39.5,26,6130)
+select * from dual
+
+insert all
+into sale_details values(20,'09-JAN-2022','P111','Ssandy',201.5,39.5,21,62550)
+into sale_details values(21,'09-JAN-2022','P112','Ddrys fruit',29.5,38.5,20,610)
+into sale_details values(22,'09-JAN-2022','P113','Tofffeen',22.5,334.5,69,610)
+into sale_details values(23,'09-JAN-2022','P114','Butfters',24.5,365.5,35,6110)
+into sale_details values(24,'09-JAN-2022','P115','Picksle',26.5,396.5,266,6730)
+select * from dual
+
+insert all
+into sale_details values(25,'10-JAN-2022','P116','Canedy',207.5,37.5,21,6107)
+into sale_details values(26,'10-JAN-2022','P117','Dry rfruit',91.5,38.5,20,65410)
+into sale_details values(27,'10-JAN-2022','P118','Toffre',252.5,364.5,29,6140)
+into sale_details values(28,'10-JAN-2022','P119','Buttyer',24.5,325.5,25,6310)
+into sale_details values(29,'10-JAN-2022','P120','TEAs',26.5,39.5,246,6120)
+select * from dual
+
+insert all
+into sale_details values(30,'11-JAN-2022','P121','Canerdy',207.5,37.5,21,617)
+into sale_details values(31,'11-JAN-2022','P122','Drys rfruit',91.5,308.5,20,5410)
+into sale_details values(32,'11-JAN-2022','P123','Tofrfre',52.5,364.5,29,610)
+into sale_details values(33,'11-JAN-2022','P124','Buttyyer',246.5,35.5,25,610)
+into sale_details values(34,'11-JAN-2022','P125','TEAsi',26.5,39.5,246,61320)
+select * from dual
+
+Find date-wise total sales
+select sale_date,sum(no_of_unite_sale) from sale_details group by sale_date
+
+Find the product-wise total sale
+select product_name,sum(no_of_unite_sale) from sale_details group by product_name
+
+Find maximum sale_amount in a day
+select sale_date,sum(total_sale_amt) from sale_details group by sale_date
+
+Find the product-wise minimum and maximum sale_amount.
+select min(total_sale_amt),max(total_sale_amt) from  sale_details group by product_name
+ 
+Find date-wise average_sale
+
+select sale_date,avg(no_of_unite_sale) from sale_details group by sale_date
+__________________________________________________________________________________________________________________________
+ *************************************** SUB QUERYies*****************************
+ select first_name,salary from employees where salary>(select salary from employees where first_name='Nancy')
+
+select first_name,job_id,salary from employees where job_id=(select job_id from employees where employee_id=133) and salary>(select salary from employees where employee_id=135)
+
+select first_name,job_id,salary from employees where salary = (select MIN(salary) from employees);
+
+//the oracale server execute sub-queryies first 
+//the oracle server return results into table Having clause keywords
+
+select department_id,min(salary) from employees group by department_id having min(salary)>(select min(salary) from employees where department_id=80)
+
+select employee_id,first_name,job_id from employees where salary> ANY (select salary from employees where job_id='SA_MAN');
+
+select employee_id,first_name,job_id from employees where salary> ALL (select AVG(salary) from employees GROUP BY DEPARTMENT_ID);
+
+
+select * from employees,departments
+select * from departments
+
+
+employee_id,first_name,department_name,job_id,city they belong to for department like Marketing and Marketing
+select e.employee_id,e.first_name,d.department_name,e.job_id,l.city from employees e,departments d,locations l 
+
+select * from employees where department_id in(30,20)
+
+ __________________________________________________________________________________________________________________________
+ 
+ 
+ __________________________________________________________________________________________________________________________
 
 
