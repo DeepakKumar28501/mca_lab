@@ -690,10 +690,64 @@ where E.salary>10000
 select E.employee_id,E.first_name||' '||E.Last_name,D.department_name,E.job_id,L.city from employees E,departments D,Locations L
 where E.department_id=D.department_id and D.department_name like 'Marketing%' AND D.department_name like 'Purchasing%'
 
-                                
-___________________________________________________________________________________________________________________________________
+ __________________________________________________________________________________________________________________________________
+ ******************************************* ASSSIGNMENT 10 *****************************************
+ 1. Write a query to perform cartesian product between Locations and countries table.
+select * from locations cross join countries;
+
+2. Write a query to perform equijoin between employees table and department table.
+select * from employees,departments where employees.department_id=departments.department_id;
+
+3. Write a query to perform Natural join between employees table and department table.
+select * from employees NATURAL JOIN departments;
+
+4. Write a query to display employee id, employee name ,designation, salary, department id , department name.
+select E.employee_id,E.first_name||' '||last_name,E.job_id,E.salary,E.department_id,D.department_name from employees E,departments D;
+
+5. Write a query to display employee id, employee name ,designation, joining date, department name for departments like Administration and IT.
+select E.employee_id,E.first_name||' '||last_name,E.job_id,E.job-id,E.hire_date,D.department_name from employees E,departments D 
+where E.department_id=D.department_id AND D.department_name='Administration' OR D.department_name='IT';
+
+6. Write a query to display employee id, employee name, department name, designation, joining date, salary who are received salary more than 10000.
+select E.employee_id,E.first_name||' '||last_name,D.department_name,E.job_id,E.hire_date,E.salary from employees E,departments D
+where E.department_id=D.department_id AND salary>10000;
+
+7. Write a query to display employee id, employee name, department name, designation, city they belongs to for depatments like marketing and purchase.
+select E.employee_id,E.first_name||' '||last_name,D.department_name,E.job_id,L.city from employees E,departments D,locations L
+where E.department_id=D.department_id AND D.location_id=L.location_id AND D.department_name='Marketing' OR D.department_name='Purchasing';
+
+8. a query to display employee id, employee name, department name, designation , city who are from Tokyo and Bombay
+select E.employee_id,E.first_name||' '||last_name,D.department_name,E.job_id,L.city from employees E,departments D,locations L
+where E.department_id=D.department_id AND D.location_id=L.location_id AND L.city='Tokyo' OR L.city='Bombay';
+ ___________________________________________________________________________________________________________________________________
    **************************************** ASSIGNMENT 11********************************************* 
  
+ Assignment-11
+DBMS(Group by , Having)
+1.	Create following table and insert some records into it.
+Sale_id	number	Primary key
+Date	date	Not null
+Product_id	Varchar2	
+Product_name	Varchar2	
+Cost_price	Number	Float value
+Sales_price	Number	Float value
+No_of_unit_sale	Number	Float value
+Total_sale_amt	Number	Float value
+
+Insert minimum five records per day for a period of minimum one week.
+For a product_id , product_name must be unique.
+
+
+2.	Find date-wise total sales.
+3.	Find the product-wise total sale.
+4.	Find maximum sale_amount in a day.
+5.	Find the product-wise minimum and maximum sale_amount.
+6.	Find date-wise average_sale.
+7.	Count number of sales date-wise.
+8.	Find total-sales of which product is more than 50000.
+9.	Find total-sales of which product is less than 250000.
+10.	Find date-wise total-sales amount more than 300000.
+
  create table sale_details(
 sale_id number(5) primary key,
 sale_date date  NOT NULL,
