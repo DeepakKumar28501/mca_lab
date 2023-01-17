@@ -1,4 +1,220 @@
+______________________________________________________________________________________________________________________________________________________
+*********************************** DATE CONVERSIONS*****************************************************
+------------------------cheat seat-------------------------------------------------------------------------
+ ORACLE LAB 5
+Date Time Functions
+ SYSDATE
+ SYSTIMESTAMP
+ CURRENT_DATE
+ CURRENT_TIMESTAMP
+ sADD_MONTHS(d,n)
+ MONTHS_BETWEEN(d1,d2)
+ LAST_DAY (d)
+ NEXT_DAY(d)
+ ROUND(d[,format])
+ TRUNC (d[,format])
+Working with Dates
+• Oracle stores dates in an internal character
+format : century, year, month, day, hours,
+minutes, seconds.
+• The default date format is DD-Mon-YY.
+• SYSDATE is function returning date and time.
+However when the function is executed it only
+gives the date, to view the time part it needs to
+be converted to character.
+• DUAL is a dummy table used to view
+SYSDATE.
+Arithmetic with Dates
+• Add or subtract a number to or from a
+date for a resultant date value.
+• Subtract two dates to find the number of
+days between those days.
+• Add hours to a date by dividing the
+number of hours by 24.
+Operation Result Description
+Date + number Date Adds a number of days to
+a date
+Date – number Date Subtracts a number of
+days from a date
+Date – date Number of days Subtracts one date from
+another
+Date + number/24 Date Adds a number of hours to
+a date
+Arithmetic with Dates
+Date functions
+Function Description
+MONTHS_BETWEEN Number of months between two
+dates
+ADD_MONTHS Add calendar months to date
+NEXT_DAY Next day of the date specified
+LAST_DAY Last day of the month
+ROUND Round date
+TRUNC Truncate Date
+• MONTHS_BETWEEN(’01-SEP-95’,’11-JAN-94’) 19.6774194
+• ADD_MONTHS(’11-JAN-94’,6) ’11-JUL-94’
+• NEXT_DAY(’01-SEP-95’,’FRIDAY’) ‘08-SEP-95’
+• LAST_DAY(’01-SEP-95’) ’30-SEP-95’
+Using Date Formats
+• ROUND(’25-JUL-95’,’MONTH’) 01-AUG-95
+Using Date Functions
+• ROUND(’25-JUL-95’,’YEAR’) 01-JAN-96
+• TRUNC(’25-JUL-95’,’MONTH’) 01-JUL-95
+• TRUNC(’25-JUL-95’,’YEAR’) 01-JAN-95
+Conversion Functions
+Data type
+Conversion
+Implicit data type
+conversion
+Explicit data type
+conversion
+Explicit data type conversion
+TO_NUMBER TO_DATE
+NUMBER CHARACTER DATE
+TO_CHAR TO_CHAR
+TO_CHAR Function with dates
+TO_CHAR(date, ‘fmt’)
+The format model :
+•Must be enclosed in single quotation marks and is case
+sensitive.
+• Can include any valid date format element.
+• Has an fm (fill mode) element to remove padded blanks or
+suppress leading zeros.
+• Is separated from the date value by a comma.
+Example:
+SQL> SELECT first_name, email, TO_CHAR(HIRE_DATE,
+‘fmMM/YY')AS Month_Hired FROM EMPLOYEES WHERE job_id =
+'AD_VP';
+Element of date format model
+YYYY Full year in numbers
+YEAR Year spelled out
+MM Two-digit value for month
+MONTH Full name of the month
+DY Three-letter abbreviation of the day of the
+week
+DAY Full name of the day
+Element Description
+SCC or CC Century
+Years in dates YYYY Year
+YYY or YY or Y Last 3 / 2 / 1 digit of the year
+Y,YYY Year with comma in this position
+YEAR Year spelled out
+BC or AD BC/AD indicator
+B.C or A.D BC/AD Indicator with periods
+Q quarter of the year
+MM Month, two digit value
+Element Description
+MONTH Name of the month padded with
+blanks to length of nine
+characters
+MON Name of the month, three letter
+abbreviation.
+RM Roman numeral month
+WW or W Week of year or month
+DDD or DD or D Day of year / month/ week
+DAY Name of the day padded with
+blanks to length of nine
+character
+DY Name of the Day; three letter
+abbreviation
+Element Description
+AM or PM Meridian indicator
+A.M or P.M Meridian indicator with periods
+HH / HH12 / HH24 Hour of day or hour (1-12) or hour
+(0-23)
+MI Minute ( 0 –59 )
+SS Second ( 0 – 59 )
+SSSSS Seconds past midnight ( 0 –
+86399)
+TH Ordinal Number ( DDTH for 4TH )
+SP Spelled out number (DDSP for
+FOUR)
+SPTH or THSP Spelled-out ordinal number
+(DDSPTH – FOURTH)
+Using TO_CHAR Function with dates
+Example:
+SELECT first_name, TO_CHAR(hire_date,'fmDdspth "of" Month
+YYYY fmHH : MI : SS AM') AS HIREDATE FROM employees;
 
+------------------------------------------------------------------------------------------------------------
+**** it return date in numbers date 17-JAN-23 to like(7/1/4)
+select sysdate,to_char(to_date('07-JAN-2004'),'fmDD/MM/YY') from dual
+
+**** it return date in numbers date 17-JAN-23 to like(07-1-4)
+select sysdate,to_char(to_date('07-JAN-2004'),'fmDD-MM-YY') from dual
+
+**** it return date in numbers date 17-JAN-23 to like(07-1-2004)
+select sysdate,to_char(to_date('07-JAN-2004'),'fmDD-MM-YYYY') from dual
+
+**** it return date in numbers date 17-JAN-23 to like(07-1-TWO THOUSAND FOUR)
+select sysdate,to_char(to_date('07-JAN-2004'),'fmDD-mm-YEAR') from dual
+
+**** it return date in numbers date 17-JAN-23 to like('WEDNESDAY-JANUARY-TWO THOUSAND FOUR')
+select sysdate,to_char(to_date('07-JAN-2004'),'fmDAY-MONTH-YEAR') from dual
+
+**** it return date in numbers date 17-JAN-23 to like(7-1-4)
+select sysdate,to_char(to_date('07-JAN-2014'),'fmDD-mm-y') from dual
+or
+select sysdate,to_char(to_date('07-JAN-2014'),'fmscc') from dual
+
+**** it return 'twenty fourteen'
+select sysdate,to_char(to_date('07-JAN-2014'),'fmyear') from dual
+
+**** it return 'TWENTY FOURTEEN'
+select sysdate,to_char(to_date('07-JAN-2014'),'fmYEAR') from dual
+
+**** it return 'january'
+select sysdate,to_char(to_date('07-JAN-2014'),'fmMONTH') from dual
+
+**** it return 'JAN' return month three letter
+select sysdate,to_char(to_date('07-JAN-2014'),'fmMON') from dual
+
+**** it return 'XII' return month ROMAN NUMERAL MONTH
+select sysdate,to_char(to_date('07-dec-2014'),'fmRM') from dual
+
+**** it return current weak number of year
+select sysdate,to_char(to_date('07-dec-2014'),'fmWW') from dual
+
+**** it return current weak number of month
+select sysdate,to_char(to_date('24-dec-2014'),'fmW') from dual
+
+*****DDD it return the number of the day of the year(341)
+select sysdate,to_char(to_date('07-dec-2014'),'fmddd') from dual
+
+*****DD it return the number of the day of the month(341)
+select sysdate,to_char(to_date('07-dec-2014'),'fmdd') from dual
+
+*****D it return the number of the day of the month(341)
+select sysdate,to_char(to_date('07-dec-2014'),'fmd') from dual
+
+*****it return systemtime meridian indicator (AM/PM)
+select sysdate,to_char(systimestamp,'fmAM') from dual
+
+*****it return systemtime time hour
+select sysdate,to_char(systimestamp,'fmHH') from dual
+
+*****it return systemtime time hour(in 12 format)
+select sysdate,to_char(systimestamp,'fmHH12') from dual
+
+*****it return systemtime time hour(in 24 format)
+select sysdate,to_char(systimestamp,'fmHH24') from dual
+
+*****it return systemtime time minute(0-59)
+select sysdate,to_char(systimestamp,'fmMI') from dual
+
+*****it return systemtime time second(0-59)
+select sysdate,to_char(systimestamp,'fmSS') from dual
+
+*****it return systemtime time second past midnight(0-86399)
+select sysdate,to_char(systimestamp,'fmSSSSS') from dual
+
+*****it return systemtime time second(0-59)
+select sysdate,to_char(systimestamp,'fmTH') from dual
+
+****USING CHAR FUNCTION WITH DATES
+**** It return Date in Digits 'Seventeenth JULY TWENTY TWENTY-ONE'
+select TO_CHAR(to_date('17-JUL-2021'),'fmDdspth MONTH YEAR') from dual
+
+______________________________________________________________________________________________________________________________________________________
 
 
 
