@@ -2,7 +2,85 @@
 
 
 
+_____________________________________________________________________________________________________________________________________________
+************************************ DATE TIME Operations****************************************************************************
+****Give current system date date
+select sysdate from dual
 
+****Give current date note depend systemdate
+select current_date from dual
+
+****SYSTIMESTAMP returns the system date, including fractional seconds and time zone, of the system on which the database resides
+select systimestamp from dual
+
+****The CURRENT_TIMESTAMP function returns the current date and time,Tip: Also look at the GETDATE() function.
+select current_timestamp from dual
+
+**** ADD 10 days in date like 'hire_date+10'
+select first_name,hire_date,hire_date+10 as "After 10 days of joining" from employees
+
+**** SUB 15 days in days to hire_date like as 'hire_date-15'
+select first_name,hire_date,hire_date-15 as "Before 15 days of joining" from employees
+
+**** return number of days current date
+select round(sysdate-to_date('01-jan-2023')) from dual
+
+**** count Number of days between to dates
+select to_date('12-jan-1999')-to_date('15-jul-1990') from dual
+
+**** return number of days between to date fith floating number
+select sysdate-to_date('01-jan-2023') from dual
+
+**** next date t system date
+select systimestamp,sysdate+(1/24)*12 from dual
+
+**** count number of month between to dates(return proper number of month)
+select round(months_between(sysdate,to_date('01-dec-2023'))) from dual
+select round(months_between(to_date('01-dec-2023'),to_date('01-dec-2013'))) from dual
+
+****it return number of month between to date with floating
+select months_between(sysdate,'09-feb-2001') from dual
+
+**** ADD or subtract month any date
+select add_months(sysdate,-10) from dual
+or
+select add_months('09-feb-2011',-10) from dual
+or
+select add_months(to_date('09-feb-2011'),-10) from dual
+
+**** find specific day date
+select Next_day(sysdate,'sunday') from dual
+select Next_day('09-feb-2001','monday') from dual
+
+**** Find Last Day of month
+select Last_day(sysdate) from dual
+
+****find next year from currrent date year
+select round(TO_Date('25-nov-23'),'YEAR') from dual
+
+**** find the weak starting date //dosent metter lettercase
+select round(TO_Date('25-nov-22'),'W') from dual
+select round(sysdate,'W') from dual
+
+****find cuurent weak with monday
+select round(TO_Date('25-nov-22'),'IW') from dual
+select round(sysdate,'iW') from dual
+
+select round(TO_Date('25-nov-22'),'hh') from dual
+select round(sysdate,'hh') from dual
+select round(TO_Date('25-nov-22'),'HH12') from dual
+select round(systimestamp,'MI') from dual
+select round(sysdate,'day') from dual
+select round(sysdate,'DDD') from dual
+
+****It change current date to year first day(01-jan-year)
+select TRUNC(TO_DATE('03-NOV-22'),'YEAR') from DUAL
+
+****It change current date to monthfirst day(01-month-year)
+select TRUNC(TO_DATE('03-NOV-22'),'month') from DUAL
+
+
+______________________________________________________________________________________________________________________________________________
 SELECT 2*5 FROM DUAL
 SELECT SYSDATE FROM DUAL
 SELECT * FROM DUAL
