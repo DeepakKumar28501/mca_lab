@@ -1137,8 +1137,80 @@ select e.employee_id,e.first_name,d.department_name,e.job_id,l.city from employe
 select * from employees where department_id in(30,20)
 
  __________________________________________________________________________________________________________________________
+ Find Nth Highest Salary---------------
+ Select FIRST_NAME, SALARY from Employees T1 where n-1=(select count(DISTINCT SALARY from employees T2 where T2.salary>T1.salary))
+
+ method -2
  
  
  __________________________________________________________________________________________________________________________
+ This code helped you to understand joins in DATABASE
+ Create Table 2 as "Departments2"-----------------
+ CREATE TABLE departments2 (
+  department_id NUMBER PRIMARY KEY,
+  department_name VARCHAR2(50)
+);
+ 
+ create table 1 as "Employees2"--------------
+ CREATE TABLE employees2 (
+  emp_id NUMBER PRIMARY KEY,
+  salary NUMBER,
+  mobile_num VARCHAR2(20),
+  department_id NUMBER REFERENCES departments2(department_id) 
+);
+
+ INSERT SOME DATA INTO DEPARTMENTS -------------
+ 
+INSERT ALL
+INTO departments2 values(1, 'Marketing')
+INTO departments2 values(2, 'Sales')
+INTO departments2 values(3, 'Finance')
+INTO departments2 values(4, 'Human Resources')
+INTO departments2 values(5, 'Information Technology')
+INTO departments2 values(6, 'BCA')
+INTO departments2 values(7, 'MCA')
+
+ INSERT SOME DATA INTO Employees -------------
+ 
+insert all
+into employees2 values(1001,72483,"6397789868",2)
+into employees2 values(1002,72484,"6397789869",3)
+into employees2 values(1003,72485,"6397789870",4)
+into employees2 values(1004,72486,"6397789871",5)
+into employees2 values(1005,72487,"6397789872",6)
+into employees2 values(1006,72488,"6397789873",7)
+into employees2 values(1007,72489,"6397789874",1)
+into employees2 values(1008,72490,"6397789875",2)
+into employees2 values(1009,72491,"6397789876",3)
+into employees2 values(1010,72492,"6397789877",4)
+into employees2 values(1011,72493,"6397789878",5)
+into employees2 values(1012,72494,"6397789879",6)
+into employees2 values(1013,72495,"6397789880",7)
+into employees2 values(1014,72496,"6397789881",1)
+into employees2 values(1015,72497,"6397789882",2)
+into employees2 values(1016,72498,"6397789883",3)
+into employees2 values(1017,72499,"6397789884",4)
+into employees2 values(1018,72100,"6397789885",5)
+into employees2 values(1019,72101,"6397789886",6)
+into employees2 values(1020,72102,"6397789887",7)
+into employees2 values(1021,72103,"6397789888",1)
+
+
+ select * from employees2
+select * from departments2
+
+/* inner Join */
+select * from employees2 E inner join departments2 D on E.department_id=D.department_id;
+
+/* right Join */
+select * from employees2 E right join departments2 D on E.department_id=D.department_id;
+
+/* left Join */
+select * from employees2 E left join departments2 D on E.department_id=D.department_id
+
+/* full Join */
+select * from employees2 E full join departments2 D on E.department_id=D.department_id;
+select * from employees2 E left join departments2 D on E.department_id=D.department_id
+ 
 
 
